@@ -1,3 +1,9 @@
+const selectRock = document.querySelector('#selectRock');
+const selectPaper = document.querySelector('#selectPaper');
+const selectScissors = document.querySelector('#selectScissors');
+const output = document.querySelector('#output');
+const score = document.querySelector('#score');
+
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
     const computerChoice = choices[Math.floor(choices.length * Math.random())];
@@ -23,7 +29,7 @@ function playRound(playerSelection, computerSelection) {
         return "You Lose! Scissors beats Paper";
     } else if (playerSelection == "paper" && computerSelection == "rock") {
         playerScore++;
-        return "You Win! Win beats Rock";
+        return "You Win! Paper beats Rock";
     } else if (playerSelection == "scissors" && computerSelection == "rock") {
         computerScore++;
         return "You Lose! Rock beats Scissors";
@@ -34,14 +40,39 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-while (true) {
-
-    const playerSelection = prompt("Enter your move: ",);
-    console.log(playerSelection);
+selectRock.addEventListener('click', () => {
     const computerSelection = getComputerChoice();
-    console.log(playRound(playerSelection, computerSelection));
-    console.log("Player: " + playerScore + " : Computer: " + computerScore);
-    if(playerScore == 5 || computerScore == 5){
-        break;
+    output.textContent = playRound('rock', computerSelection);
+    currentScore();
+});
+
+selectPaper.addEventListener('click', () => {
+    const computerSelection = getComputerChoice();
+    output.textContent = playRound('paper', computerSelection);
+    currentScore();
+});
+
+selectScissors.addEventListener('click', () => {
+    const computerSelection = getComputerChoice();
+    output.textContent = playRound('scissors', computerSelection);
+    currentScore();
+});
+
+
+function currentScore() {
+    score.textContent = "Player: " + playerScore + " : Computer: " + computerScore;
+    if (playerScore == 5) {
+        output.textContent = "Game Over! You Win!"
+        disableButtons();
+    } else if (computerScore == 5) {
+        output.textContent = "Game Over! You Lose!"
+        disableButtons();
     }
 }
+
+function disableButtons() {
+    document.getElementById("selectRock").disabled = true;
+    document.getElementById("selectPaper").disabled = true;
+    document.getElementById("selectScissors").disabled = true;
+}
+
