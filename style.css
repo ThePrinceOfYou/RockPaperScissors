@@ -1,0 +1,10 @@
+html {
+    font-size: 10px;
+    background: url('./background.jpg');
+    background-size: 100% auto;
+
+}
+
+div {
+  font-size: 40px;
+}
