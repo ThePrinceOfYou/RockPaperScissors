@@ -4,14 +4,14 @@ const selectScissors = document.querySelector('#selectScissors');
 const output = document.querySelector('#output');
 const score = document.querySelector('#score');
 
+let computerScore = 0;
+let playerScore = 0;
+
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
     const computerChoice = choices[Math.floor(choices.length * Math.random())];
     return computerChoice;
 }
-
-let computerScore = 0;
-let playerScore = 0;
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
